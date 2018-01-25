@@ -23,8 +23,14 @@ export const store = new Vuex.Store({
       state.todos.splice(index, 1)
     },
     CHANGE_COMPLETE (state, {index, completed}) {
-      console.log(state.todos)
       state.todos[index].completed = completed
+    },
+    DELETE_COMPLETE (state) {
+      for (let i = state.todos.length - 1; i >= 0; i--) {
+        if (state.todos[i].completed === true) {
+          state.todos.splice(i, 1)
+        }
+      }
     }
   },
   actions: {
@@ -39,7 +45,9 @@ export const store = new Vuex.Store({
     },
     changeComplete ({commit}, obj) {
       commit('CHANGE_COMPLETE', obj)
-      console.log(obj)
+    },
+    deleteComplete ({commit}) {
+      commit('DELETE_COMPLETE')
     }
   },
   getters: {
