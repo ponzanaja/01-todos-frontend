@@ -23,6 +23,7 @@ export const store = new Vuex.Store({
       state.todos.splice(index, 1)
     },
     CHANGE_COMPLETE (state, {index, completed}) {
+      console.log(state.todos)
       state.todos[index].completed = completed
     }
   },
